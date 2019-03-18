@@ -1,7 +1,9 @@
 let time = 10,
-    isTimer = false,
-    playerguess, 
+    playerguess = false, 
     timer,
+    i = 0,
+    correctGuess = 0
+    wrongGuess = 0,
     questions = [
     {
         question: 'Which of the following is Stitch experiment number?',
@@ -65,6 +67,19 @@ let time = 10,
     }
 ]
 
+const hideAnswer = () => {
+    document.querySelector('#answer1').style.visibility = 'hidden'
+    document.querySelector('#answer2').style.visibility = 'hidden'
+    document.querySelector('#answer3').style.visibility = 'hidden'
+    document.querySelector('#answer4').style.visibility = 'hidden'
+}
+const showAnswer = () => {
+    document.querySelector('#answer1').style.visibility = ''
+    document.querySelector('#answer2').style.visibility = ''
+    document.querySelector('#answer3').style.visibility = ''
+    document.querySelector('#answer4').style.visibility = ''
+}
+
 const totalTime = _ => {
     minutes = Math.floor(time / 60)
     seconds = time % 60
@@ -78,56 +93,74 @@ const startTimer = () => {
         time--
         document.querySelector('.timer').innerHTML = totalTime()
         if (time < 1) {
-            document.querySelector('.container').innerHTML = `The correct answer is: ${questions[i].correctanswer}`
+            document.querySelector('.question').innerHTML = `The correct answer is: ${questions[i].correctanswer}`
+            hideAnswer()
             clearInterval(timer)
+            wrongGuess++
+            setTimeout(newQuestion, 3000)
         }
     }, 1000)
 }
 
-let i = 0
+const finalScore = () => {
+    if (i === questions.length){
+        clearInterval(timer)
+        hideAnswer()
+        setTimeout(function (){
+            if (correctGuess >= 6){
+                document.querySelector('.question').innerHTML = `You sure know your Disney facts!`
+                document.querySelector('.result').innerHTML = `Correct answer: ${correctGuess}<br/> Wrong answer: ${wrongGuess}`
+                document.querySelector('.picture').src = './assets/images/happy.jpg'
+            } else {
+                document.querySelector('.question').innerHTML = `You need more Disney magic in your life`
+                document.querySelector('.result').innerHTML = `Correct answer: ${correctGuess}<br/> Wrong answer: ${wrongGuess}`
+                document.querySelector('.picture').src = './assets/images/sad.jpg'
+            }
+
+        }, 2000)
+    }
+}
+
 let startGame = () => {
         startTimer()
+        showAnswer()
+        finalScore()
         document.querySelector('.startbtn').style.visibility = 'hidden'
-        currentquestion = questions[i].question
-
         document.querySelector('.question').innerHTML = questions[i].question
+        document.querySelector('#answer1').textContent = questions[i].answer[0]
+        document.querySelector('#answer2').textContent = questions[i].answer[1]
+        document.querySelector('#answer3').textContent = questions[i].answer[2]
+        document.querySelector('#answer4').textContent = questions[i].answer[3]
+}
 
-        let answer = document.createElement('button')
-        answer.textContent = questions[i].answer[0]
-        answer.value = questions[i].answer[0]
-        answer.className = 'answer'
-        document.querySelector('#answer1').append(answer)
-        
-        let answer2 = document.createElement('button')
-        answer2.textContent = questions[i].answer[1]
-        answer2.value = questions[i].answer[1]
-        answer2.className = 'answer'
-        document.querySelector('#answer2').append(answer2)
-        
-        let answer3 = document.createElement('button')
-        answer3.textContent = questions[i].answer[2]
-        answer3.value = questions[i].answer[2]
-        answer3.className = 'answer'
-        document.querySelector('#answer3').append(answer3)
-        
-        let answer4 = document.createElement('button')
-        answer4.textContent = questions[i].answer[3]
-        answer4.value = questions[i].answer[3]
-        answer4.className = 'answer'
-        document.querySelector('#answer4').append(answer4)
+const newQuestion = () => {
+    if (time === 0 || playerguess === true){
+        playerguess = false
+        i++
+        time = 10
+        startGame()
+        document.querySelector('.result').innerHTML = ``
+        document.querySelector('.timer').innerHTML = '01:00'
+        showAnswer()
+    }
 }
 
 document.addEventListener('click', ({target}) => {
     if (target.className === 'answer') {
-        playerguess = target.value
-        if (playerguess === questions[i].correctanswer) {
+        playerguess = true
+        clearInterval(timer)
+        if (target.textContent === questions[i].correctanswer) {
             document.querySelector('.question').innerHTML = 'Correct!'
-            document.querySelector('.answerbox').innerHTML = ``
-            clearInterval(timer)
+            hideAnswer()
+            correctGuess++
+            setTimeout(newQuestion, 3000)
         } else{
             document.querySelector('.question').innerHTML = 'Nope!'
-            document.querySelector('.answerbox').innerHTML = `The correct answer is: ${questions[i].correctanswer}`
-            clearInterval(timer)
+            document.querySelector('.result').innerHTML = `The correct answer is: ${questions[i].correctanswer}`
+            hideAnswer()
+            wrongGuess++
+            setTimeout(newQuestion, 3000)
         }
     }
 })
+hideAnswer()
