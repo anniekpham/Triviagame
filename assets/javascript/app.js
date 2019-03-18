@@ -1,4 +1,4 @@
-let time = 10,
+let time = 30,
     playerguess = false, 
     timer,
     i = 0,
@@ -116,8 +116,16 @@ const finalScore = () => {
                 document.querySelector('.result').innerHTML = `Correct answer: ${correctGuess}<br/> Wrong answer: ${wrongGuess}`
                 document.querySelector('.picture').src = './assets/images/sad.jpg'
             }
-
         }, 2000)
+        setTimeout(function (){
+            document.querySelector('.result').innerHTML = ``
+            document.querySelector('.picture').src = ''
+            document.querySelector('.question').innerHTML = ''
+            let restartbtn = document.createElement('button')
+            restartbtn.textContent = 'Restart Game'
+            restartbtn.className = 'restart'
+            document.querySelector('.result').append(restartbtn)
+        }, 8000)
     }
 }
 
@@ -137,10 +145,10 @@ const newQuestion = () => {
     if (time === 0 || playerguess === true){
         playerguess = false
         i++
-        time = 10
+        time = 30
         startGame()
         document.querySelector('.result').innerHTML = ``
-        document.querySelector('.timer').innerHTML = '01:00'
+        document.querySelector('.timer').innerHTML = '00:30'
         showAnswer()
     }
 }
@@ -161,6 +169,19 @@ document.addEventListener('click', ({target}) => {
             wrongGuess++
             setTimeout(newQuestion, 3000)
         }
+    } else {
+        if (target.className === 'restart') {
+            time = 30
+            playerguess = false 
+            timer
+            i = 0
+            correctGuess = 0
+            wrongGuess = 0
+            document.querySelector('.timer').innerHTML = '00:30'
+            document.querySelector('.result').innerHTML = ``
+            startGame()
+        }
     }
 })
+
 hideAnswer()
