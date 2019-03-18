@@ -1,0 +1,117 @@
+body, html {
+    min-height: 100%;
+}
+body {
+    background-image: url(../images/BV9Rek.jpg);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Gudea', sans-serif;
+    font-size: 25px;
+}
+.title {
+    position: relative;
+}
+.title1, .title2 {
+    position: absolute;
+    display: inline;
+    font-family: 'Viga', sans-serif;
+    font-size: 60px;
+    padding: 2.5% 3%;
+    box-shadow: 5px 10px 30px #000000;
+    color: white
+}
+.title1 {
+    background-color: #38a7f0;
+    transform: rotate(-1deg);
+    -webkit-transform: rotate(-1deg);
+    -moz-transform: rotate(-1deg);
+    -ms-transform: rotate(-1deg);
+    -o-transform: rotate(-1deg);
+}
+.title2 {
+    background-color: #f04a38;
+    transform: rotate(1deg);
+    -webkit-transform: rotate(1deg);
+    -moz-transform: rotate(1deg);
+    -ms-transform: rotate(1deg);
+    -o-transform: rotate(1deg);
+}
+.T {
+    top: .6em;
+    left: 5.5em;
+}
+.R {
+    top: .2em;
+    left: 7.7em;
+}
+.I1 {
+    top: .6em;
+    left: 10em;
+}
+.V {
+    top: .2em;
+    left: 12em;
+}
+.I2 {
+    top: .6em;
+    left: 14.3em;
+}
+.A {
+    top: .2em;
+    left: 16.3em;
+}
+.container {
+    position: relative;
+    margin: auto;
+    top: 11em;
+    width: 60%;
+    height: 350px;
+    text-align: center;
+    padding-top: 3%;
+    background-color: rgba(255, 255, 255, 0.363);
+}
+.startbtn {
+    position: absolute;
+    font-family: 'Gudea', sans-serif;
+    font-size: 30px;
+    background-color: #f04a38;
+    color: white;
+    width: 120px;
+    border: none;
+    box-shadow: 5px 8px 40px #000000;
+    top: 8.5em;
+    left: 12.5em;
+}
+.timer {
+    position: relative;
+    font-family: 'Gudea', sans-serif;
+    font-size: 40px;
+    border: 2px dashed white;
+    color: white;
+    width: 200px;
+    height: 75px;
+    padding-top: 2%;
+    text-align: center;
+    margin: auto;
+    top: 5.5em;
+}
+.question{
+    padding-top: 4%;
+    padding-bottom: 2%;
+    text-align: center;
+    color: rgb(59, 59, 59);
+}
+.answer {
+    padding: 1%;
+    margin: 1.5%;
+    border: none;
+    background-color: #f04a38;
+    color: white;
+}
+.answer:focus {
+    background-color: #38a7f0;
+}
+.answerbox{
+    text-align: center;
+}
