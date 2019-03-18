@@ -8,6 +8,7 @@ body {
     background-size: cover;
     font-family: 'Gudea', sans-serif;
     font-size: 25px;
+    color: rgb(59, 59, 59);
 }
 .title {
     position: relative;
@@ -100,7 +101,6 @@ body {
     padding-top: 1%;
     padding-bottom: 2%;
     text-align: center;
-    color: rgb(59, 59, 59);
 }
 .answer, .restart {
     padding: 1%;
@@ -118,4 +118,119 @@ body {
 }
 .picture {  
     margin-top: -5%;
+}
+
+@media only screen and (max-width:1230px){
+    .title1, .title2 {
+        font-size: 50px;
+    }
+    .startbtn {
+        font-size: 25px;
+        top: 8.5em;
+        left: 10em;
+    }
+    .timer {
+        font-size: 30px;
+    }
+    .container{
+        top: 8em;
+    }
+}
+@media only screen and (max-width:980px){
+    .title1, .title2 {
+        font-size: 40px;
+    }
+    .startbtn {
+        font-size: 20px;
+        top: 8.5em;
+        left: 8em;
+    }
+    .timer {
+        font-size: 25px;
+        height: 50px;
+    }
+    .container{
+        top: 6em;
+        height: 310px;
+    }
+    .picture {
+        width: 250px;
+    }
+}
+@media only screen and (max-width:768px){
+    body {
+        font-size: 18px;
+    }
+    .title1, .title2 {
+        font-size: 30px;
+    }
+    .startbtn {
+        top: 6em;
+        left: 5em;
+    }
+    .timer {
+        font-size: 20px;
+        height: 25px;
+    }
+    .container{
+        top: 7em;
+        height: 260px;
+    }
+    .picture {
+        width: 190px;
+    }
+}
+@media only screen and (max-width:640px){
+    body {
+        font-size: 16px;
+    }
+    .title1, .title2 {
+        position: relative;
+        font-size: 26px;
+        padding: 10px;
+        margin: 1%;
+    }
+    .T {
+        top: 0;
+        left: 3em;
+    }
+    .R {
+        top: 0;
+        left: 3em;
+    }
+    .I1 {
+        top: 0;
+        left: 3em;
+    }
+    .V {
+        top: 0;
+        left: 3em;
+    }
+    .I2 {
+        top: 0;
+        left: 3em;
+    }
+    .A {
+        top: 0;
+        left: 3em;
+    }
+    .startbtn {
+        top: 4em;
+        left: 5.5em;
+        font-size: 15px;
+        width: 70px;
+    }
+    .timer {
+        font-size: 15px;
+        height: 18px;
+        width: 90px;
+        padding: 1.5px;
+        margin-top: -10px; 
+    }
+    .container{
+        top: 6em;
+    }
+    .picture {
+        width: 130px;
+    }
 }
