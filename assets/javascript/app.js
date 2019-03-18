@@ -80,6 +80,7 @@ const showAnswer = () => {
     document.querySelector('#answer4').style.visibility = ''
 }
 
+// translate second into minutes and set as 00:00
 const totalTime = _ => {
     minutes = Math.floor(time / 60)
     seconds = time % 60
@@ -88,10 +89,13 @@ const totalTime = _ => {
     return `${minutes}:${seconds}`
 }
 
+// start count down
 const startTimer = () => {
     timer = setInterval(() => {
         time--
         document.querySelector('.timer').innerHTML = totalTime()
+
+        // when timer reach 0 show correct answer, stop timer, increase wrong guess, run new question
         if (time < 1) {
             document.querySelector('.question').innerHTML = `The correct answer is: ${questions[i].correctanswer}`
             hideAnswer()
@@ -102,6 +106,7 @@ const startTimer = () => {
     }, 1000)
 }
 
+// when all questions has been ran, stop timer and calculate total score
 const finalScore = () => {
     if (i === questions.length){
         clearInterval(timer)
@@ -117,6 +122,8 @@ const finalScore = () => {
                 document.querySelector('.picture').src = './assets/images/sad.jpg'
             }
         }, 2000)
+
+        // after total score been shown; create reset button
         setTimeout(function (){
             document.querySelector('.result').innerHTML = ``
             document.querySelector('.picture').src = ''
@@ -129,6 +136,7 @@ const finalScore = () => {
     }
 }
 
+// click start button to start game
 let startGame = () => {
         startTimer()
         showAnswer()
@@ -141,6 +149,7 @@ let startGame = () => {
         document.querySelector('#answer4').textContent = questions[i].answer[3]
 }
 
+// add next question when time reaches 0 or answer been clicked; 
 const newQuestion = () => {
     if (time === 0 || playerguess === true){
         playerguess = false
@@ -154,16 +163,20 @@ const newQuestion = () => {
     }
 }
 
+
 document.addEventListener('click', ({target}) => {
+    // stop timer, show if user choice is right or wrong
     if (target.className === 'answer') {
         playerguess = true
         clearInterval(timer)
         document.querySelector('.picture').src = questions[i].imgUrl
+        // if right, announce correct and increase correct guess
         if (target.textContent === questions[i].correctanswer) {
             document.querySelector('.question').innerHTML = 'Correct!'
             hideAnswer()
             correctGuess++
             setTimeout(newQuestion, 3000)
+        // if wrong, annouce wrong + correct answer and increase wrong guess
         } else{
             document.querySelector('.question').innerHTML = 'Nope!'
             document.querySelector('.result').innerHTML = `The correct answer is: ${questions[i].correctanswer}`
@@ -171,6 +184,7 @@ document.addEventListener('click', ({target}) => {
             wrongGuess++
             setTimeout(newQuestion, 3000)
         }
+    // reset game when restart button is clicked
     } else {
         if (target.className === 'restart') {
             time = 30
