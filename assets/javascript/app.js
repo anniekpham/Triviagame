@@ -9,61 +9,61 @@ let time = 30,
         question: 'Which of the following is Stitch experiment number?',
         correctanswer: 'Experiment 626',
         answer: ['Experiment 100', 'Experiment 625', 'Experiment 626', 'Experiment 101'],
-        playerchoice: ''
+        imgUrl: './assets/images/stitch.jpg'
     },
     {
         question: 'Which of the following lyrics does not follow "Be a man..."?',
         correctanswer: 'Tranquil as a forest but on fire within',
         answer: ['We must be swift as the coursing river', 'Tranquil as a forest but on fire within', 'With all the force of a great typhoon', 'With all the strength of a raging fire'],
-        playerchoice: ''
+        imgUrl: './assets/images/mulan.jpg'
     },
     {
         question: 'Who is the oldest Disney Princess',
         correctanswer: 'Snow White',
         answer: ['Cinderella', 'Aurora', 'Belle', 'Snow White'],
-        playerchoice: ''
+        imgUrl: './assets/images/snow-white.jpg'
     },
     {
         question: `What is the name of Belle's dad`,
         correctanswer: 'Maurice',
         answer: ['Maurice', 'LeFou', 'Stefan', 'Frederic'],
-        playerchoice: ''
+        imgUrl: './assets/images/maurice.jpg'
     },
     {
         question: 'Who created Stitch?',
         correctanswer: 'Jumba',
         answer: ['Gantu', 'Jumba', 'Pleakley', 'Lilo'],
-        playerchoice: ''
+        imgUrl: './assets/images/jumba.png'
     },
     {
         question: 'Which of the following will be revealed as a new "Land" in Disneyland during Summer of 2019?',
         correctanswer: `Galaxy's Edge`,
         answer: ['Marvel Land', `Galaxy's Edge`, 'Epcot', 'Naboo City'],
-        playerchoice: ''
+        imgUrl: './assets/images/galaxy.jpg'
     },
     {
         question: 'In the Lion King 2, who was Kovu?',
         correctanswer: `Scar's apppointed heir`,
         answer: [`Scar's apppointed heir`, `Simba and Nala's son`, `Kiara's enemy`, `Scar's biological son`],
-        playerchoice: ''
+        imgUrl: './assets/images/kovu.jpg'
     },
     {
         question: 'How long has the Genie been imprisoned?',
         correctanswer: '10,000 years',
         answer: ['100 years', '8,000 years', '50 years', '10,000 years'],
-        playerchoice: ''
+        imgUrl: './assets/images/genie.jpg'
     },
     {
         question: 'Cruella De Vil is a villian in which Disney movie?',
         correctanswer: '101 Dalmatians',
         answer: ['Lady and the Tramp', 'Oliver and Company','101 Dalmatians', 'The Fox and the Hound'],
-        playerchoice: ''
+        imgUrl: './assets/images/cruella.jpg'
     },
     {
         question: `What did they always get wrong on Flynn Rider's wanted poster?`,
         correctanswer: 'His nose',
         answer: ['His nose','His eyes', 'His Jaw', 'His hair'],
-        playerchoice: ''
+        imgUrl: './assets/images/flynn.jpg'
     }
 ]
 
@@ -147,6 +147,7 @@ const newQuestion = () => {
         i++
         time = 30
         startGame()
+        document.querySelector('.picture').src = ''
         document.querySelector('.result').innerHTML = ``
         document.querySelector('.timer').innerHTML = '00:30'
         showAnswer()
@@ -157,6 +158,7 @@ document.addEventListener('click', ({target}) => {
     if (target.className === 'answer') {
         playerguess = true
         clearInterval(timer)
+        document.querySelector('.picture').src = questions[i].imgUrl
         if (target.textContent === questions[i].correctanswer) {
             document.querySelector('.question').innerHTML = 'Correct!'
             hideAnswer()
