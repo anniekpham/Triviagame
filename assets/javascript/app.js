@@ -66,6 +66,7 @@ let time = 30,
         imgUrl: './assets/images/flynn.jpg'
     }
 ]
+let answerbtn = document.querySelectorAll('#answer1, #answer2, #answer3, #answer4')
 
 // function to add/change element's text
 const addText = (a, b) => {
@@ -73,16 +74,14 @@ const addText = (a, b) => {
 }
 
 const hideAnswer = () => {
-    document.querySelector('#answer1').style.visibility = 'hidden'
-    document.querySelector('#answer2').style.visibility = 'hidden'
-    document.querySelector('#answer3').style.visibility = 'hidden'
-    document.querySelector('#answer4').style.visibility = 'hidden'
+    answerbtn.forEach(function(hide) {
+        hide.style.visibility = 'hidden'
+    });
 }
 const showAnswer = () => {
-    document.querySelector('#answer1').style.visibility = ''
-    document.querySelector('#answer2').style.visibility = ''
-    document.querySelector('#answer3').style.visibility = ''
-    document.querySelector('#answer4').style.visibility = ''
+    answerbtn.forEach(function(show) {
+        show.style.visibility = ''
+    });
 }
 
 // translate second into minutes and set as 00:00
